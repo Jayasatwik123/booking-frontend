@@ -2,9 +2,10 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
-import "./login.css";
+import "./register.css";
+import Login from "../login/Login";
 
-const Login = () => {
+const Register = () => {
   const [credentials, setCredentials] = useState({
     username: undefined,
     password: undefined,
@@ -17,12 +18,14 @@ const Login = () => {
   const handleChange = (e) => {
     setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
-
+const handleNavigate=()=>{
+    navigate("/login")
+}
   const handleClick = async (e) => {
     e.preventDefault();
     dispatch({ type: "LOGIN_START" });
     try {
-      const res = await axios.post("https://tourreservation.onrender.com/api/auth/login", credentials);
+      const res = await axios.post("https://tourreservation.onrender.com/api/auth/register", credentials);
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
       navigate("/")
     } catch (err) {
@@ -42,13 +45,45 @@ const Login = () => {
           className="lInput"
         />
         <input
+          type="email"
+          placeholder="email"
+          id="email"
+          onChange={handleChange}
+          className="lInput"
+        />
+        <input
           type="password"
           placeholder="password"
           id="password"
           onChange={handleChange}
           className="lInput"
         />
+        <input
+          type="text"
+          placeholder="phone"
+          id="phone"
+          onChange={handleChange}
+          className="lInput"
+        />
+        <input
+          type="text"
+          placeholder="city"
+          id="city"
+          onChange={handleChange}
+          className="lInput"
+        />
+        <input
+          type="text"
+          placeholder="country"
+          id="country"
+          onChange={handleChange}
+          className="lInput"
+        />
         <button disabled={loading} onClick={handleClick} className="lButton">
+          Register
+        </button>
+        Already Registered? 
+        <button disabled={loading} onClick={handleNavigate} className="lButton">
           Login
         </button>
         {error && <span>{error.message}</span>}
@@ -57,4 +92,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Register

@@ -24,7 +24,7 @@ const Hotel = () => {
   const [open, setOpen] = useState(false);
   const [openModal, setOpenModal] = useState(false);
 
-  const { data, loading, error } = useFetch(`/hotels/find/${id}`);
+  const { data, loading, error } = useFetch(`https://tourreservation.onrender.com/api/hotels/find/${id}`);
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -60,7 +60,7 @@ const Hotel = () => {
     if (user) {
       setOpenModal(true);
     } else {
-      navigate("/login");
+      navigate("/register");
     }
   };
   return (
@@ -98,7 +98,7 @@ const Hotel = () => {
             </div>
           )}
           <div className="hotelWrapper">
-            <button className="bookNow">Reserve or Book Now!</button>
+            <button onClick={handleClick} className="bookNow">Reserve or Book Now!</button>
             <h1 className="hotelTitle">{data.name}</h1>
             <div className="hotelAddress">
               <FontAwesomeIcon icon={faLocationDot} />

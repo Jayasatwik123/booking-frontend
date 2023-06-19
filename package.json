@@ -11,6 +11,7 @@
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.27.2",
+    "caniuse-lite": "^1.0.30001504",
     "date-fns": "^2.28.0",
     "react": "^18.0.0",
     "react-date-range": "^1.4.0",
@@ -40,7 +41,12 @@
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
-      "last 1 safari version"
+      "last 1 safari version" 
     ]
-  },"proxy":"https://tourreservation.onrender.com/api"
+  
+  },"options": {
+    "allowedHosts": [ "https://localhost:8800/api"],
+    "proxy":["https://tourreservation.onrender.com/api"]
+  }
+
 }
